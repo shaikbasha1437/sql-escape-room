@@ -1,0 +1,4 @@
+sql.js 1.15.2 (SQLite 3.54.0) - sql-wasm.js + sql-wasm.wasm copied from the npm package dist/ (MIT)
+CodeMirror 6 (codemirror 6.0.2, @codemirror/view 6.43.15, state 6.7.6, lang-sql 6.10.0, autocomplete 6.20.4,
+commands 6.11.1, language 6.13.1, @lezer/highlight 1.2.5) - bundled into codemirror.js as an IIFE (global CM) with
+esbuild 0.28.2 from scripts/vendor-entry.js (MIT)
