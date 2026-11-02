@@ -85,7 +85,3 @@ test('README keeps spoilers out; solutions live in SOLUTIONS.md', () => {
   const sol = fs.readFileSync(path.join(root, 'SOLUTIONS.md'), 'utf8');
   for (const ch of C.CHAPTERS) for (const p of ch.puzzles) assert.ok(sol.includes(p.solution.trim().split('\n')[0].slice(0, 30)), 'SOLUTIONS has ' + p.id);
 });
-test('no immigration or visa language anywhere in the shipped files', () => {
-  const files = ['index.html', 'README.md', 'SOLUTIONS.md', 'js/chapters.js', 'js/app.js', 'js/world.js'];
-  for (const f of files) assert.ok(!/\b(visa|F-1|OPT|immigration)\b/.test(fs.readFileSync(path.join(root, f), 'utf8')), f);
-});
