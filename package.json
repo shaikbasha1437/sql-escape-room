@@ -1,0 +1,12 @@
+{
+  "name": "sql-escape-room",
+  "version": "1.0.0",
+  "description": "A narrative mystery you solve by writing real SQL in the browser. sql.js (SQLite WASM), client-side only.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "serve": "python3 -m http.server 8080"
+  },
+  "engines": { "node": ">=18" }
+}

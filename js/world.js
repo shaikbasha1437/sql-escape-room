@@ -197,7 +197,7 @@
     const ev = [];
     const S = (badge, door, hms, result) => ev.push([badge, door, at(hms), result || 'granted']);
     // story swipes
-    S('B-0101', 'Staff Entrance', '21:10:12');
+    S('B-0101', 'Staff Entrance', '21:10:12'); S('B-0101', 'Vault Corridor', '19:05:33'); S('B-0233', 'Vault Corridor', '20:22:10');
     S('B-0418', 'Vault Corridor', '22:05:40');
     S('B-0417', 'Vault Corridor', '22:30:02');
     S('B-0418', 'Security Office', '22:40:15'); S('B-0417', 'Security Office', '22:52:30');
@@ -295,14 +295,14 @@
     const ev = [];
     const P = (tag, room, hms) => ev.push([tag, room, at(hms)]);
     const seq = (tag, list) => list.forEach(([hms, room]) => P(tag, room, hms));
-    seq('LY-201', [['18:02:10', 'Ledger Hall'], ['19:40:31', 'Catalogue Hall'], ['20:05:12', 'Ledger Hall'], ['21:09:40', 'Staff Entrance']]);
+    seq('LY-201', [['18:02:10', 'Ledger Hall'], ['19:20:00', 'Donor Lounge'], ['19:40:31', 'Catalogue Hall'], ['20:05:12', 'Ledger Hall'], ['21:09:40', 'Staff Entrance']]);
     seq('LY-233', [['18:01:05', 'Conservation Lab'], ['20:12:50', 'Break Room'], ['20:31:22', 'Conservation Lab'], ['21:58:44', 'Staff Entrance']]);
     seq('LY-234', [['18:05:00', 'Conservation Lab'], ['21:14:10', 'Break Room'], ['21:29:47', 'Conservation Lab'], ['23:38:10', 'Map Room'], ['23:55:30', 'Conservation Lab']]);
     seq('LY-350', [['22:58:40', 'Staff Entrance'], ['23:01:05', 'Donor Lounge'], ['23:30:02', 'Service Lift'], ['23:33:46', 'Donor Lounge'], ['23:49:01', 'Vault'], ['23:52:12', 'Loading Dock'], ['23:55:48', 'Donor Lounge']]);
     seq('LY-417', [['18:00:30', 'Security Office'], ['19:15:12', 'Lobby'], ['20:40:05', 'Security Office'], ['22:29:55', 'Vault'], ['22:52:20', 'Security Office'], ['23:40:09', 'Lobby']]);
     seq('LY-418', [['18:00:40', 'Security Office'], ['19:50:30', 'Reading Room'], ['22:05:31', 'Vault'], ['22:40:05', 'Security Office'], ['23:30:00', 'Map Room']]);
     seq('LY-521', [['18:10:22', 'Server Closet'], ['21:49:58', 'Server Closet'], ['22:40:12', 'Break Room'], ['22:50:33', 'Server Closet']]);
-    seq('LY-610', [['18:00:10', 'Reading Room'], ['19:30:45', 'Catalogue Hall'], ['20:02:19', 'Reading Room'], ['21:29:00', 'Main Entrance']]);
+    seq('LY-610', [['18:00:10', 'Reading Room'], ['19:30:45', 'Catalogue Hall'], ['20:02:19', 'Reading Room'], ['21:20:30', 'Donor Lounge'], ['21:29:00', 'Main Entrance']]);
     seq('LY-712', [['18:30:00', 'Lobby'], ['20:10:15', 'Reading Room'], ['21:40:00', 'Catalogue Hall'], ['22:20:30', 'Ledger Hall'], ['23:15:31', 'Donor Lounge'], ['23:20:56', 'Map Room']]);
     seq('LY-104', [['18:20:00', 'Catalogue Hall'], ['20:44:30', 'Break Room'], ['20:58:12', 'Catalogue Hall'], ['21:59:20', 'Main Entrance']]);
     seq('LY-522', [['18:00:55', 'Map Room'], ['19:43:58', 'Catalogue Hall'], ['20:10:40', 'Map Room'], ['21:59:59', 'Loading Dock']]);
