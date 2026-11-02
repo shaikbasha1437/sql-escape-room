@@ -271,7 +271,8 @@
     const ch = cur.chapter;
     const res = P.solve(state, ch, p.id);
     A.play('success');
-    toast('Solved: ' + p.title + '. Clue pinned to your notebook.');
+    toast('Solved \u201c' + p.title + '\u201d. Clue pinned to your notebook.');
+    const stale = document.querySelector('[data-check-result]'); if (stale) stale.remove();
     award(P.evaluate(state, { type: 'solve' }, CH));
     if (res.finished) {
       award(P.evaluate(state, { type: 'chapter', chapter: ch, cs: csOf() }, CH));
@@ -363,10 +364,10 @@
     if (!r.columns.length) { body.textContent = ''; return; }
     const SHOW = 500;
     const tbl = h('table', { class: 'grid' });
-    tbl.append(h('thead', null, h('tr', null, h('th', { 'aria-label': 'Pin' }), r.columns.map((c) => h('th', { scope: 'col', text: c })))));
+    tbl.append(h('thead', null, h('tr', null, h('th', { class: 'pincol', 'aria-label': 'Pin' }), r.columns.map((c) => h('th', { scope: 'col', text: c })))));
     const tb = h('tbody');
     r.rows.slice(0, SHOW).forEach((row) => {
-      tb.append(h('tr', null, h('td', null, h('button', { type: 'button', class: 'pin', title: 'Pin this row to your notebook', 'aria-label': 'Pin row to notebook', onclick: () => pinRow(r.columns, row) }, '\ud83d\udccc')),
+      tb.append(h('tr', null, h('td', { class: 'pincol' }, h('button', { type: 'button', class: 'pin', title: 'Pin this row to your notebook', 'aria-label': 'Pin row to notebook', onclick: () => pinRow(r.columns, row) }, '\ud83d\udccc')),
         row.map((v) => h('td', { class: v === null ? 'null' : typeof v === 'number' ? 'num' : '', title: cellText(v), text: cellText(v) }))));
     });
     tbl.append(tb);
@@ -715,5 +716,5 @@
   openChapter(P.unlocked(state, CH, start) ? start : 0);
   if (state.chapters && Object.keys(state.chapters).length > 1 && P.summary(state, CH).rooms > 0) toast('Welcome back. Progress restored from slot ' + slot + '.');
   if ('serviceWorker' in navigator && location.protocol !== 'file:') window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
-  window.__ser = { get state() { return state; }, get slot() { return slot; }, stack };
+  window.__ser = { get state() { return state; }, get slot() { return slot; }, get ready() { return !!cur.answers && !cur.loading; }, get room() { return cur.chapter && cur.chapter.id; }, stack };
 })();
