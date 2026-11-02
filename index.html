@@ -1,1 +1,94 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL Escape Room</title></head><body><p>SQL Escape Room is being built. Check back soon.</p></body></html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SQL Escape Room: The Midnight Archive</title>
+<meta name="description" content="A mystery you escape by writing real SQL in your browser. Eight locked rooms, one stolen manuscript, and a database that remembers everything.">
+<meta name="theme-color" content="#1a1216">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta property="og:title" content="SQL Escape Room: The Midnight Archive">
+<meta property="og:description" content="Trapped in a locked archive at midnight. The only way out is SQL.">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="stylesheet" href="styles.css">
+<script>try{var t=JSON.parse(localStorage.getItem('ser.settings')||'{}').theme;if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)document.documentElement.dataset.theme='light';}catch(e){}</script>
+</head>
+<body data-mood="ember">
+<a class="skip" href="#editor-host">Skip to the SQL editor</a>
+<div class="mood" aria-hidden="true"><div class="mood-glow"></div><div class="mood-vignette"></div></div>
+<header class="top">
+  <div class="brand">
+    <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 28V14a8 8 0 0 1 16 0v14" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="16" cy="19" r="2.6" fill="currentColor"/><path d="M15 21h2l.8 4h-3.6z" fill="currentColor"/></svg>
+    <div><div class="brand-name">SQL Escape Room</div><div class="brand-case" id="case-title">The Midnight Archive</div></div>
+  </div>
+  <div class="room-bar">
+    <button class="room-name" id="btn-map" type="button" aria-label="Open the chapter map"><span id="room-num">Room 1</span> <strong id="room-title">The Reading Room</strong> <span class="caret" aria-hidden="true">&#9662;</span></button>
+    <span class="timer" id="timer" title="Time in this room" aria-label="Time in this room">0:00</span>
+    <span class="stars" id="room-stars" aria-label="Stars for this room"></span>
+  </div>
+  <nav class="top-actions" aria-label="Game">
+    <button type="button" class="icon-btn" id="btn-notebook" aria-label="Notebook"><span aria-hidden="true">&#128211;</span><span class="badge" id="nb-count">0</span><span class="lbl">Notebook</span></button>
+    <button type="button" class="icon-btn" id="btn-achievements" aria-label="Achievements"><span aria-hidden="true">&#127942;</span><span class="lbl">Awards</span></button>
+    <button type="button" class="icon-btn" id="btn-sound" aria-label="Sound off" aria-pressed="false"><span aria-hidden="true" id="sound-icon">&#128263;</span><span class="lbl">Sound</span></button>
+    <button type="button" class="icon-btn" id="btn-theme" aria-label="Switch to light theme"><span aria-hidden="true" id="theme-icon">&#9790;</span><span class="lbl">Theme</span></button>
+    <button type="button" class="icon-btn" id="btn-menu" aria-label="Saves and settings"><span aria-hidden="true">&#9776;</span><span class="lbl">Menu</span></button>
+  </nav>
+</header>
+
+<main class="layout" id="layout" data-tab="story">
+  <section class="panel story-panel" id="panel-story" aria-label="Story and puzzles">
+    <div class="narration" id="narration" aria-live="polite">
+      <div class="narration-text" id="narration-text"></div>
+      <div class="narration-tools"><button type="button" class="link-btn" id="btn-skip">Skip &#9654;&#9654;</button><button type="button" class="link-btn" id="btn-replay" hidden>Replay story</button></div>
+    </div>
+    <ol class="puzzles" id="puzzles" aria-label="Puzzles in this room"></ol>
+    <div class="room-end" id="room-end" hidden></div>
+  </section>
+
+  <section class="panel work-panel" id="panel-query" aria-label="Query console">
+    <div class="toolbar">
+      <button type="button" class="btn primary" id="btn-run" title="Run (Ctrl+Enter)"><span aria-hidden="true">&#9654;</span> Run <kbd>Ctrl&#8629;</kbd></button>
+      <button type="button" class="btn" id="btn-history">History</button>
+      <button type="button" class="btn" id="btn-cheats">Cheat sheet</button>
+      <button type="button" class="btn ghost" id="btn-clear" aria-label="Clear the editor">Clear</button>
+      <span class="db-status" id="db-status" role="status">Opening the archive&hellip;</span>
+    </div>
+    <div class="editor-host" id="editor-host"></div>
+    <div class="results" id="results" aria-live="polite">
+      <div class="results-head" id="results-head"><span class="muted">Results appear here. Try <code>SELECT * FROM staff;</code></span></div>
+      <div class="results-body" id="results-body"></div>
+    </div>
+  </section>
+
+  <aside class="panel schema-panel" id="panel-schema" aria-label="Schema explorer">
+    <div class="schema-head"><h2>Archive tables</h2><span class="muted small">Click a column to insert it</span></div>
+    <div id="schema"></div>
+  </aside>
+</main>
+
+<nav class="tabs" id="tabs" aria-label="Panels">
+  <button type="button" data-tab="story" aria-pressed="true"><span aria-hidden="true">&#128220;</span>Story</button>
+  <button type="button" data-tab="query" aria-pressed="false"><span aria-hidden="true">&#9000;</span>Query</button>
+  <button type="button" data-tab="schema" aria-pressed="false"><span aria-hidden="true">&#128451;</span>Tables</button>
+</nav>
+
+<div class="door" id="door" hidden aria-hidden="true"><div class="door-l"></div><div class="door-r"></div><div class="door-lock">&#128275;</div><div class="door-text" id="door-text"></div></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div id="modal-root"></div>
+<noscript><p class="noscript">SQL Escape Room needs JavaScript to run its in-browser database.</p></noscript>
+
+<script src="vendor/codemirror.js"></script>
+<script src="js/chapters.js"></script>
+<script src="js/check.js"></script>
+<script src="js/errors.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/dbclient.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/share.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
