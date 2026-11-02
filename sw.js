@@ -1,6 +1,6 @@
 /* SQL Escape Room service worker: network-first for app files, per-file cache, offline fallback.
    Bump CACHE on each release; old caches are removed on activate. */
-const CACHE = 'sql-escape-room-v1';
+const CACHE = 'sql-escape-room-v2';
 const ASSETS = [
   './', './index.html', './styles.css', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
   './vendor/codemirror.js', './vendor/sql-wasm.js', './vendor/sql-wasm.wasm',

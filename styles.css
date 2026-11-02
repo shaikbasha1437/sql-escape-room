@@ -1,10 +1,10 @@
 /* SQL Escape Room: moody archive look. Dark by default; a parchment light theme. Each room sets a
    mood hue on <body data-mood>. Motion is reduced when the player asks for it. */
-:root {
+:root { color-scheme: dark;
   --h: 30; --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; --r: 10px; --tab-h: 0px;
 }
-[data-theme="dark"] {
+[data-theme="dark"] body {
   --bg: hsl(var(--h) 18% 6%); --bg2: hsl(var(--h) 16% 9%); --panel: hsl(var(--h) 14% 11% / .92); --panel2: hsl(var(--h) 12% 15%);
   --line: hsl(var(--h) 18% 24%); --text: hsl(var(--h) 30% 90%); --muted: hsl(var(--h) 12% 64%);
   --accent: hsl(var(--h) 85% 64%); --accent-ink: hsl(var(--h) 60% 10%); --accent-soft: hsl(var(--h) 70% 60% / .16);
@@ -13,7 +13,8 @@
   --syn-op: hsl(var(--h) 20% 72%); --syn-type: hsl(280 60% 76%); --syn-name: hsl(var(--h) 25% 88%);
   --shadow: 0 10px 40px rgb(0 0 0 / .5); color-scheme: dark;
 }
-[data-theme="light"] {
+[data-theme="light"] { color-scheme: light; }
+[data-theme="light"] body {
   --bg: hsl(var(--h) 35% 92%); --bg2: hsl(var(--h) 30% 88%); --panel: hsl(var(--h) 40% 97% / .95); --panel2: hsl(var(--h) 30% 92%);
   --line: hsl(var(--h) 20% 78%); --text: hsl(var(--h) 30% 14%); --muted: hsl(var(--h) 12% 38%);
   --accent: hsl(var(--h) 75% 34%); --accent-ink: #fff; --accent-soft: hsl(var(--h) 70% 45% / .12);
